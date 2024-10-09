@@ -17,20 +17,22 @@
 </head>
 
 <body>
-    <button class='home-button'> <- home </button>
-            <div class=title>
-                All Hikes
-            </div>
-            <div id='hike-list' class='hike-list-container'></div>
-            <div id="hike-details">
-                <hr>
-                <h3>Hike Details</h3>
-                <p id="hike-name"></p>
-                <p id="hike-steepness"></p>
-                <p id="hike-miles"></p>
-                <p id="hike-recommend"></p>
-                <p id="hike-difficulty"></p>
-            </div>
+    <div class=home-button-container>
+        <button class='home-button'> <- home </button>
+    </div>
+    <div class=title>
+        All Hikes
+    </div>
+    <div id='hike-list' class='hike-list-container'></div>
+    <div id="hike-details">
+        <hr>
+        <h3>Hike Details</h3>
+        <p id="hike-name"></p>
+        <p id="hike-steepness"></p>
+        <p id="hike-miles"></p>
+        <p id="hike-recommend"></p>
+        <p id="hike-difficulty"></p>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -130,7 +132,14 @@
         background-color: #323637;
     }
 
+    .home-button-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
     .title {
+        margin-top: 100px;
         font-size: 48px;
     }
 </style>

@@ -18,59 +18,61 @@
 </head>
 
 <body>
-    <button class='home-button'> <- home </button>
-            <div class=title>
-                New Hike
+    <div class='home-button-container'>
+        <button class='home-button'> <- home </button>
+    </div>
+    <div class=title>
+        New Hike
+    </div>
+    <form id="hike-form"method="POST">
+        @csrf
+        <div class="form-wrapper">
+            <div>
+                <label> Hike Name </label>
+                <input name="hike_name" type=text></input>
             </div>
-            <form id="hike-form"method="POST">
-                @csrf
-                <div class="form-wrapper">
-                    <div>
-                        <label> Hike Name </label>
-                        <input name="hike_name" type=text></input>
-                    </div>
-                    <div>
-                        <label> Miles </label>
-                        <input name="miles" type=number step="0.1"></input>
-                    </div>
-                    <label>Difficulty:</label>
-                    <div>
-                        <input type="radio" id="easy" name="difficulty" value="easy">
-                        <label for="easy">Easy</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="medium" name="difficulty" value="medium">
-                        <label for="medium">Medium</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="hard" name="difficulty" value="hard">
-                        <label for="hard">Hard</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="insane" name="difficulty" value="insane">
-                        <label for="insane">Insane</label>
-                    </div>
-                    <div>
-                        <label> Steepness </label>
-                        <input name="steepness" type=range></input>
-                    </div>
-                    <div>
-                        <label>Would Reccomend</label>
-                        <input name="would_recommend" type=checkbox></input>
-                    </div>
-                    <div>
-                        <input class=submit-button type=submit value="Submit"></input>
-                    </div>
-                    <footer>
-                        Mikayla Bloomquist 2024
-                    </footer>
-                </div>
-            </form>
+            <div>
+                <label> Miles </label>
+                <input name="miles" type=number step="0.1"></input>
+            </div>
+            <label>Difficulty:</label>
+            <div>
+                <input type="radio" id="easy" name="difficulty" value="easy">
+                <label for="easy">Easy</label>
+            </div>
+            <div>
+                <input type="radio" id="medium" name="difficulty" value="medium">
+                <label for="medium">Medium</label>
+            </div>
+            <div>
+                <input type="radio" id="hard" name="difficulty" value="hard">
+                <label for="hard">Hard</label>
+            </div>
+            <div>
+                <input type="radio" id="insane" name="difficulty" value="insane">
+                <label for="insane">Insane</label>
+            </div>
+            <div>
+                <label> Steepness </label>
+                <input name="steepness" type=range></input>
+            </div>
+            <div>
+                <label>Would Reccomend</label>
+                <input name="would_recommend" type=checkbox></input>
+            </div>
+            <div>
+                <input class=submit-button type=submit value="Submit"></input>
+            </div>
+            <footer>
+                Mikayla Bloomquist 2024
+            </footer>
+        </div>
+    </form>
 
-            <div id=popup-background>
-                <div id=popup-content>
-                </div>
-            </div>
+    <div id=popup-background>
+        <div id=popup-content>
+        </div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -150,6 +152,12 @@
         background-color: #323637;
     }
 
+    .home-button-container {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
     #popup-content {}
 
     #popup-background {
@@ -160,6 +168,7 @@
     }
 
     .title {
+        margin-top: 100px;
         font-size: 48px;
     }
 </style>
