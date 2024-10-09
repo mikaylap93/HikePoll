@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\HikeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/dashboard', function () {
@@ -17,4 +18,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+//TODO split these out so its cleaner
+Route::group(['prefix' => 'hikes'], function () {
+    //DATA
+    Route::get('get-all', [HikeController::class, 'getAll'])->name('hikes.getAll');
+    Route::get('detail/{hike}', [HikeController::class, 'getDetail'])->name('hikes.detail');
+    Route::post('save-hike', [HikeController::class, 'saveHike'])->name('hikes.save');
+    //VIEWS
+
+    Route::get('create-new', function () {
+        return view('new-hike');
+    })->name('hikes.createNew');
+    Route::get('hikes.all-hikes', function () {
+        return view('all-hikes');
+    })->name('hikes.allHikes');
+});
+
+require __DIR__ . '/auth.php';
