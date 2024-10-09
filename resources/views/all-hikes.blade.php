@@ -17,9 +17,9 @@
 </head>
 
 <body>
-    <H2>
-        Hike Names
-    </H2>
+    <div class=title>
+        All Hikes
+    </div>
     <div id='hike-list'></div>
     <div id="hike-details">
         <hr>
@@ -64,7 +64,7 @@
                 $('#hike-steepness').text("Steepness: " + data.steepness);
                 $('#hike-miles').text("Miles: " + data.miles);
                 $('#hike-recommend').text("Recommend: " + (data.recommend ? 'Yes' : 'No'));
-                $('#hike-details').fadeIn();
+                $('#hike-details').fadeIn(1000);
             },
             error: function(xhr, status, error) {
                 console.error("Error fetching hike details: " + error);
@@ -75,18 +75,35 @@
 </script>
 
 <style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        background-color: #BAC9CE;
+        font-family: 'Open Sans', Sans;
+        text-align: center;
+        color: #323637;
+    }
+
+    #hike-details {
+        display: none;
+    }
+
     .hike-button {
         padding: 15px 30px;
         margin: 10px;
-        background-color: #008000;
+        background-color: #16537e;
         color: #FFFFFF;
         border: none;
     }
 
     .hike-button:hover {
-        background-color: #003300;
+        background-color: #0B293F;
+    }
+
+    .title {
+        font-size: 48px;
     }
 </style>
-
 
 </html>
