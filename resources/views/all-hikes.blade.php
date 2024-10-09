@@ -41,12 +41,12 @@
                 $.each(data,
                     function(index, hike) {
                         hikesContainer.append(
-                            '<div><button class=hike-button><a class=hike-link data-id="' +
+                            '<div><button class=hike-button data-id="' +
                             hike
                             .id + '">' + hike.name +
-                            '</a></button></div>');
+                            '</button></div>');
                     });
-                $('.hike-link').on('click', function() {
+                $('.hike-button').on('click', function() {
                     let hikeId = $(this).data('id');
                     getHikeDetail(hikeId);
                 });
@@ -64,7 +64,7 @@
                 $('#hike-steepness').text("Steepness: " + data.steepness);
                 $('#hike-miles').text("Miles: " + data.miles);
                 $('#hike-recommend').text("Recommend: " + (data.recommend ? 'Yes' : 'No'));
-                $('#hike-details').show();
+                $('#hike-details').fadeIn();
             },
             error: function(xhr, status, error) {
                 console.error("Error fetching hike details: " + error);
