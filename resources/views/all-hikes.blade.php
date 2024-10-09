@@ -21,7 +21,7 @@
             <div class=title>
                 All Hikes
             </div>
-            <div id='hike-list'></div>
+            <div id='hike-list' class='hike-list-container'></div>
             <div id="hike-details">
                 <hr>
                 <h3>Hike Details</h3>
@@ -29,6 +29,7 @@
                 <p id="hike-steepness"></p>
                 <p id="hike-miles"></p>
                 <p id="hike-recommend"></p>
+                <p id="hike-difficulty"></p>
             </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -39,6 +40,7 @@
             method: 'GET',
             success: function(data) {
                 let hikesContainer = $('#hike-list');
+                hikesContainer.hide();
                 $.each(data,
                     function(index, hike) {
                         hikesContainer.append(
@@ -47,6 +49,8 @@
                             .id + '">' + hike.name +
                             '</button></div>');
                     });
+
+                hikesContainer.fadeIn(1000);
                 $('.hike-button').on('click', function() {
                     let hikeId = $(this).data('id');
                     getHikeDetail(hikeId);
@@ -69,6 +73,7 @@
                 $('#hike-steepness').text("Steepness: " + data.steepness);
                 $('#hike-miles').text("Miles: " + data.miles);
                 $('#hike-recommend').text("Recommend: " + (data.recommend ? 'Yes' : 'No'));
+                $('#hike-difficulty').text("Difficulty: " + (data.difficulty.name))
                 $('#hike-details').fadeIn(1000);
             },
             error: function(xhr, status, error) {
@@ -90,12 +95,17 @@
         color: #323637;
     }
 
+    .hike-list-container {
+        display: grid;
+        max-height: 50vh;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
     #hike-details {
         display: none;
     }
 
-    .hike-button,
-    .home-button {
+    .hike-button {
         padding: 15px 30px;
         margin: 10px;
         background-color: #16537e;
@@ -103,9 +113,21 @@
         border: none;
     }
 
-    .hike-button:hover,
-    .home-button:hover {
+    .hike-button:hover {
         background-color: #0B293F;
+    }
+
+    .home-button {
+        padding: 15px 30px;
+        margin: 10px;
+        background-color: #464A4B;
+        color: #FFFFFF;
+        border: none;
+        float: left;
+    }
+
+    .home-button:hover {
+        background-color: #323637;
     }
 
     .title {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Hike extends Model
 {
@@ -13,6 +14,12 @@ class Hike extends Model
         'name',
         'steepness',
         'miles',
-        'recommend'
+        'recommend',
+        'difficulty_id'
     ];
+
+    public function difficulty(): BelongsTo
+    {
+        return $this->belongsTo(Difficulty::class, 'difficulty_id');
+    }
 }

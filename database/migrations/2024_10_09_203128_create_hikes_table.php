@@ -16,6 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('miles');
             $table->integer('steepness');
+            $table->unsignedBigInteger('difficulty_id');
+            $table->foreign('difficulty_id')
+                ->references('id')
+                ->on('difficulties')
+                ->onDelete('cascade');
+
             $table->tinyInteger('recommend');
             $table->timestamps();
         });

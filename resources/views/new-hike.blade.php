@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>New Hike</title>
 
@@ -18,7 +19,10 @@
 
 <body>
     <button class='home-button'> <- home </button>
-            <form id="hike-form">
+            <div class=title>
+                New Hike
+            </div>
+            <form id="hike-form"method="POST">
                 @csrf
                 <div class="form-wrapper">
                     <div>
@@ -28,6 +32,23 @@
                     <div>
                         <label> Miles </label>
                         <input name="miles" type=number step="0.1"></input>
+                    </div>
+                    <label>Difficulty:</label>
+                    <div>
+                        <input type="radio" id="easy" name="difficulty" value="easy">
+                        <label for="easy">Easy</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="medium" name="difficulty" value="medium">
+                        <label for="medium">Medium</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="hard" name="difficulty" value="hard">
+                        <label for="hard">Hard</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="insane" name="difficulty" value="insane">
+                        <label for="insane">Insane</label>
                     </div>
                     <div>
                         <label> Steepness </label>
@@ -54,6 +75,12 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $('.home-button').on('click', function() {
             window.location.href = "{{ route('hikes.home') }}";
         })
@@ -94,12 +121,11 @@
         color: #323637;
     }
 
-    .form-wrapper {
-        padding: 20px;
+    .form-wrapper>div {
+        margin-bottom: 20px;
     }
 
-    .submit-button,
-    .home-button {
+    .submit-button {
         padding: 15px 30px;
         margin: 10px;
         background-color: #16537e;
@@ -107,9 +133,21 @@
         border: none;
     }
 
-    .submit-button:hover,
-    .home-button:hover {
+    .submit-button:hover {
         background-color: #0B293F;
+    }
+
+    .home-button {
+        padding: 15px 30px;
+        margin: 10px;
+        background-color: #464A4B;
+        color: #FFFFFF;
+        border: none;
+        float: left;
+    }
+
+    .home-button:hover {
+        background-color: #323637;
     }
 
     #popup-content {}
@@ -119,6 +157,10 @@
         display: none;
         position: fixed;
         background-color: ##16537e;
+    }
+
+    .title {
+        font-size: 48px;
     }
 </style>
 

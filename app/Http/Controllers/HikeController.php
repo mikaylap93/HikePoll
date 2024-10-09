@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SaveHikeFormRequest;
+use App\Models\Difficulty;
 use App\Models\Hike;
 use Illuminate\Http\Request;
 
 class HikeController extends Controller
 {
-    public function saveHike(Request $request)
+    public function saveHike(SaveHikeFormRequest $request)
     {
-        $recommend = $request->has('would_recommend') ? 1 : 0;
-        $name = $request->input('hike_name');
-        $steepness = $request->input('steepness');
-        $miles = (float)$request->input('miles');
-        dump($miles);
-        $hike = Hike::create([
-            'name' => $name,
-            'steepness' => $steepness,
-            'miles' => $miles,
-            'recommend' => $recommend
-        ]);
 
+        $difficulty = Difficulty::where('name', $request->difficulty)
+            ->first()
+            ->getKey();
+        dump($request->difficulty);
+
+        $hike = Hike::create([
+            'name' => $request->hikeName,
+            'steepness' => $request->steepness,
+            'miles' => $request->miles,
+            'recommend' => $request->wouldRecommend,
+            'difficulty_id' => $difficulty
+        ]);
         return $hike;
     }
 
@@ -31,6 +34,7 @@ class HikeController extends Controller
 
     public function getDetail(Hike $hike)
     {
+        $hike->load('difficulty');
         return $hike;
     }
 }

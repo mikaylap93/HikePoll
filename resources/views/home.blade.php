@@ -43,7 +43,6 @@
         margin-bottom: 24px;
         display: none;
         color: #323637;
-
     }
 
     .hike-button {
