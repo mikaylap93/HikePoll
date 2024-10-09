@@ -17,18 +17,19 @@
 </head>
 
 <body>
-    <div class=title>
-        All Hikes
-    </div>
-    <div id='hike-list'></div>
-    <div id="hike-details">
-        <hr>
-        <h3>Hike Details</h3>
-        <p id="hike-name"></p>
-        <p id="hike-steepness"></p>
-        <p id="hike-miles"></p>
-        <p id="hike-recommend"></p>
-    </div>
+    <button class='home-button'> <- home </button>
+            <div class=title>
+                All Hikes
+            </div>
+            <div id='hike-list'></div>
+            <div id="hike-details">
+                <hr>
+                <h3>Hike Details</h3>
+                <p id="hike-name"></p>
+                <p id="hike-steepness"></p>
+                <p id="hike-miles"></p>
+                <p id="hike-recommend"></p>
+            </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -50,6 +51,10 @@
                     let hikeId = $(this).data('id');
                     getHikeDetail(hikeId);
                 });
+
+                $('.home-button').on('click', function() {
+                    window.location.href = "{{ route('hikes.home') }}";
+                })
             }
         })
     });
@@ -89,7 +94,8 @@
         display: none;
     }
 
-    .hike-button {
+    .hike-button,
+    .home-button {
         padding: 15px 30px;
         margin: 10px;
         background-color: #16537e;
@@ -97,7 +103,8 @@
         border: none;
     }
 
-    .hike-button:hover {
+    .hike-button:hover,
+    .home-button:hover {
         background-color: #0B293F;
     }
 

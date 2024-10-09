@@ -17,64 +17,68 @@
 </head>
 
 <body>
-    <form id="hike-form">
-        @csrf
-        <div class="form-wrapper">
-            <div>
-                <label> Hike Name </label>
-                <input name="hike_name" type=text></input>
-            </div>
-            <div>
-                <label> Miles </label>
-                <input name="miles" type=number step="0.1"></input>
-            </div>
-            <div>
-                <label> Steepness </label>
-                <input name="steepness" type=range></input>
-            </div>
-            <div>
-                <label>Would Reccomend</label>
-                <input name="would_recommend" type=checkbox></input>
-            </div>
-            <div>
-                <input class=submit-button type=submit value="Submit"></input>
-            </div>
-            <footer>
-                Mikayla Bloomquist 2024
-            </footer>
-        </div>
-    </form>
+    <button class='home-button'> <- home </button>
+            <form id="hike-form">
+                @csrf
+                <div class="form-wrapper">
+                    <div>
+                        <label> Hike Name </label>
+                        <input name="hike_name" type=text></input>
+                    </div>
+                    <div>
+                        <label> Miles </label>
+                        <input name="miles" type=number step="0.1"></input>
+                    </div>
+                    <div>
+                        <label> Steepness </label>
+                        <input name="steepness" type=range></input>
+                    </div>
+                    <div>
+                        <label>Would Reccomend</label>
+                        <input name="would_recommend" type=checkbox></input>
+                    </div>
+                    <div>
+                        <input class=submit-button type=submit value="Submit"></input>
+                    </div>
+                    <footer>
+                        Mikayla Bloomquist 2024
+                    </footer>
+                </div>
+            </form>
 
-    <div id=popup-background>
-        <div id=popup-content>
-        </div>
-    </div>
+            <div id=popup-background>
+                <div id=popup-content>
+                </div>
+            </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $('#hike-form').on('submit', function(event) {
-        event.preventDefault();
-
-
-        $.ajax({
-            url: "{{ route('hikes.save') }}",
-            method: 'POST',
-            data: $(this).serialize(),
-            success: function() {
-                $('#popup-content').text('Success!');
-                $('#popup-background').show();
-                setTimeout(() => {
-                    $('#popup-background').hide();
-                    window.location.href = "{{ route('hikes.allHikes') }}";
-                }, 1000);
-            },
-            error: function() {
-                $('#popup-content').text('Error!');
-                $('#popup-background').show();
-                setTimeout(() => {
-                    $('#popup-background').hide();
-                }, 1000);
-            }
+    $(document).ready(function() {
+        $('.home-button').on('click', function() {
+            window.location.href = "{{ route('hikes.home') }}";
+        })
+        $('#hike-form').on('submit', function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: "{{ route('hikes.save') }}",
+                method: 'POST',
+                data: $(this).serialize(),
+                success: function() {
+                    $('#popup-content').text('Success!');
+                    $('#popup-background').show();
+                    setTimeout(() => {
+                        $('#popup-background').hide();
+                        window.location.href = "{{ route('hikes.allHikes') }}";
+                    }, 1000);
+                },
+                error: function() {
+                    $('#popup-content').text('Error!');
+                    $('#popup-background').show();
+                    setTimeout(() => {
+                        $('#popup-background').hide();
+                    }, 1000);
+                }
+            });
         });
     });
 </script>
@@ -94,7 +98,8 @@
         padding: 20px;
     }
 
-    .submit-button {
+    .submit-button,
+    .home-button {
         padding: 15px 30px;
         margin: 10px;
         background-color: #16537e;
@@ -102,7 +107,8 @@
         border: none;
     }
 
-    .submit-button:hover {
+    .submit-button:hover,
+    .home-button:hover {
         background-color: #0B293F;
     }
 

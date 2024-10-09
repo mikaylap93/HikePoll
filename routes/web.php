@@ -32,6 +32,9 @@ Route::group(['prefix' => 'hikes'], function () {
     Route::get('hikes.all-hikes', function () {
         return view('all-hikes');
     })->name('hikes.allHikes');
+    Route::get('hikes.home', function () {
+        return view('home');
+    })->name('hikes.home');
 });
 
 require __DIR__ . '/auth.php';
