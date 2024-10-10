@@ -18,7 +18,7 @@
 
 <body>
     <div class=home-button-container>
-        <button class='home-button'> <- home </button>
+        <button class='home-button'> <- Home </button>
     </div>
     <div class=title>
         All Hikes
@@ -26,14 +26,18 @@
     <div id='hike-list' class='hike-list-container'></div>
     <div id="hike-details">
         <hr>
-        <h3>Hike Details</h3>
-        <p id="hike-name"></p>
-        <p id="hike-steepness"></p>
-        <p id="hike-miles"></p>
-        <p id="hike-recommend"></p>
-        <p id="hike-difficulty"></p>
+        <br>
+        <div class="detail-title">Hike Details</div>
+        <p class="hike-label">Name: <span id="hike-name-data"></span></p>
+        <p class="hike-label">Steepness: <span id="hike-steepness-data"></span></p>
+        <p class="hike-label">Miles: <span id="hike-miles-data"></span></p>
+        <p class="hike-label">Recommend: <span id="hike-recommend-data"></span></p>
+        <p class="hike-label">Difficulty: <span id="hike-difficulty-data"></span></p>
     </div>
 </body>
+<footer class=footer>
+    Mikayla Bloomquist 2024
+</footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -71,11 +75,12 @@
             url: "/hikes/detail/" + hikeId,
             method: 'GET',
             success: function(data) {
-                $('#hike-name').text("Name: " + data.name);
-                $('#hike-steepness').text("Steepness: " + data.steepness);
-                $('#hike-miles').text("Miles: " + data.miles);
-                $('#hike-recommend').text("Recommend: " + (data.recommend ? 'Yes' : 'No'));
-                $('#hike-difficulty').text("Difficulty: " + (data.difficulty.name))
+                $('#hike-name-data').hide().text(data.name).fadeIn(1000);
+                $('#hike-steepness-data').hide().text(data.steepness).fadeIn(1000);;
+                $('#hike-miles-data').hide().text(data.miles).fadeIn(1000);;
+                $('#hike-recommend-data').hide().text((data.recommend ? 'Yes' : 'No')).fadeIn(
+                    1000);
+                $('#hike-difficulty-data').hide().text((data.difficulty.name)).fadeIn(1000);
                 $('#hike-details').fadeIn(1000);
             },
             error: function(xhr, status, error) {
@@ -93,22 +98,26 @@
         margin: 0;
         background-color: #BAC9CE;
         font-family: 'Open Sans', Sans;
-        text-align: center;
         color: #323637;
     }
 
     .hike-list-container {
         display: grid;
-        max-height: 50vh;
+        max-height: 40vh;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        margin-left: 25%;
+        margin-right: 25%;
+        overflow-y: auto;
     }
 
     #hike-details {
-        display: none;
+        margin-top: 20px;
+        margin-left: 25%;
+        margin-right: 25%;
     }
 
     .hike-button {
-        padding: 15px 30px;
+        padding: 25px 50px;
         margin: 10px;
         background-color: #16537e;
         color: #FFFFFF;
@@ -139,8 +148,33 @@
     }
 
     .title {
-        margin-top: 100px;
+        margin-top: 75px;
+        margin-bottom: 25px;
+        margin-left: 25%;
+        margin-left: 25%;
         font-size: 48px;
+    }
+
+    .detail-title {
+        font-size: 36px;
+    }
+
+    .hike-label {
+        font-weight: 900;
+        font-size: 24px;
+    }
+
+    .hike-label span {
+        font-weight: 400;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        opacity: .3;
     }
 </style>
 

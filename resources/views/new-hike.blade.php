@@ -19,7 +19,7 @@
 
 <body>
     <div class='home-button-container'>
-        <button class='home-button'> <- home </button>
+        <button class='home-button'> <- Home </button>
     </div>
     <div class=title>
         New Hike
@@ -63,9 +63,7 @@
             <div>
                 <input class=submit-button type=submit value="Submit"></input>
             </div>
-            <footer>
-                Mikayla Bloomquist 2024
-            </footer>
+
         </div>
     </form>
 
@@ -74,6 +72,9 @@
         </div>
     </div>
 </body>
+<footer class=footer>
+    Mikayla Bloomquist 2024
+</footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -94,18 +95,21 @@
                 data: $(this).serialize(),
                 success: function() {
                     $('#popup-content').text('Success!');
+                    $('#popup-content').css('color', '#38761D');
                     $('#popup-background').show();
                     setTimeout(() => {
                         $('#popup-background').hide();
                         window.location.href = "{{ route('hikes.allHikes') }}";
                     }, 1000);
                 },
-                error: function() {
-                    $('#popup-content').text('Error!');
+                error: function(error) {
+                    console.log(error)
+                    $('#popup-content').css('color', '#b45f06');
+                    $('#popup-content').text(error.responseJSON.message);
                     $('#popup-background').show();
                     setTimeout(() => {
                         $('#popup-background').hide();
-                    }, 1000);
+                    }, 3000);
                 }
             });
         });
@@ -116,10 +120,9 @@
     html,
     body {
         height: 100%;
-        margin: 0;
+        margin-left: 25%;
         background-color: #BAC9CE;
         font-family: 'Open Sans', Sans;
-        text-align: center;
         color: #323637;
     }
 
@@ -129,7 +132,7 @@
 
     .submit-button {
         padding: 15px 30px;
-        margin: 10px;
+        margin-left: 25%;
         background-color: #16537e;
         color: #FFFFFF;
         border: none;
@@ -158,18 +161,36 @@
         left: 20px;
     }
 
-    #popup-content {}
+    #popup-content {
+        text-align: center;
+        color: #b45f06;
+    }
 
     #popup-background {
         z-index: 10;
         display: none;
         position: fixed;
         background-color: ##16537e;
+        text-align: center;
+        top: 60%;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 
     .title {
-        margin-top: 100px;
+        margin-top: 75px;
+        margin-bottom: 25px;
         font-size: 48px;
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 15px 0;
+        opacity: .3;
+        margin-right: 2%;
     }
 </style>
 

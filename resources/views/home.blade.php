@@ -19,6 +19,9 @@
         <button class=hike-button onclick="location.href='{{ route('hikes.createNew') }}'">New Hike</button>
     </div>
 </body>
+<footer class=footer>
+    Mikayla Bloomquist 2024
+</footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -63,7 +66,16 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        min-height: 100vh;
+        min-height: calc(100vh - 50px);
+    }
+
+    .footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 15px 0;
+        opacity: .3;
     }
 </style>
 
