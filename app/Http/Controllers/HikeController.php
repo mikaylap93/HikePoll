@@ -15,7 +15,6 @@ class HikeController extends Controller
         $difficulty = Difficulty::where('name', $request->difficulty)
             ->first()
             ->getKey();
-        dump($request->difficulty);
 
         $hike = Hike::create([
             'name' => $request->hikeName,

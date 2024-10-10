@@ -100,7 +100,7 @@
                     setTimeout(() => {
                         $('#popup-background').hide();
                         window.location.href = "{{ route('hikes.allHikes') }}";
-                    }, 1000);
+                    }, 700);
                 },
                 error: function(error) {
                     console.log(error)
