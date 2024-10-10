@@ -120,7 +120,7 @@
     html,
     body {
         height: 100%;
-        margin-left: 25%;
+        margin-left: 20%;
         background-color: #BAC9CE;
         font-family: 'Open Sans', Sans;
         color: #323637;
@@ -132,7 +132,7 @@
 
     .submit-button {
         padding: 15px 30px;
-        margin-left: 25%;
+        margin-left: 20%;
         background-color: #16537e;
         color: #FFFFFF;
         border: none;
@@ -190,7 +190,7 @@
         width: 100%;
         padding: 15px 0;
         opacity: .3;
-        margin-right: 2%;
+        margin-left: 2%;
     }
 </style>
 
